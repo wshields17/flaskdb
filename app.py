@@ -19,7 +19,7 @@ db.init_app(app)
 def index():
   result = Throwersd.query.order_by("spbest desc").all()
   dsn = create_engine('postgresql+psycopg2://postgres:991550sp@localhost/postgres')  # Use ENV vars: keep it secret, keep it safe
-  df = pd.read_sql_query ('select * from throwersd', con = dsn)
+  df = pd.read_sql_query ('select * from throwersd where bp > 100', con = dsn)
   
   return render_template('form1.html', result = result, df= df)
 
@@ -44,8 +44,9 @@ def sign():
 
 @app.route('/plot')
 def plot():
-  dsn = create_engine('postgresql+psycopg2://postgres:991550sp@localhost/postgres')  # Use ENV vars: keep it secret, keep it safe
-  df = pd.read_sql_query ('select * from throwersd where bp > 10', con = dsn)
+  dsn = create_engine('postgresql+psycopg2://postgres:991550sp@localhost/postgres') # Use ENV vars: keep it secret, keep it safe
+  cutoff = 170 
+  df = pd.read_sql_query ('select * from throwersd where bp >=' + str(cutoff) , con = dsn)
   #print (df)
   
   fig = plt.scatter([df.spbest],[df.bp])

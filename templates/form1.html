@@ -32,11 +32,11 @@
       <thead>
           <tr>
           
-              <th>Average</th>
-              <th>{{ df.spbest.mean()}}</th>
-              <th>{{ df.bp.mean() }}</th>
-              <th>{{ df.squat.mean() }}</th>
-              <th>{{df.clean.mean()}}</th>
+              <th>Correlation to SP Best</th>
+              <th>{{ 1 }}</th>
+              <th>{{ df.bp.corr(df.spbest) }}</th>
+              <th>{{ df.squat.corr(df.spbest) }}</th>
+              <th>{{df.clean.corr(df.spbest)}}</th>
             </tr>
       </thead>  
       <tbody>    
