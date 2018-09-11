@@ -18,8 +18,10 @@ db.init_app(app)
 @app.route('/') 
 def index():
   result = Throwersd.query.order_by("spbest desc").all()
+  dsn = create_engine('postgresql+psycopg2://postgres:991550sp@localhost/postgres')  # Use ENV vars: keep it secret, keep it safe
+  df = pd.read_sql_query ('select * from throwersd', con = dsn)
   
-  return render_template('form1.html', result = result)
+  return render_template('form1.html', result = result, df= df)
 
 @app.route('/process', methods=['POST'])
 def process():

@@ -17,6 +17,7 @@
   </head>
   <div style="line-height: 0.05">
   <body class="text-center">
+    
     <table   class="table" >
       <thead>
         <tr  >
@@ -27,7 +28,18 @@
           <th scope="col">Clean</th>
         </tr>
       </thead>
-      <tbody>
+
+      <thead>
+          <tr>
+          
+              <th>Average</th>
+              <th>{{ df.spbest.mean()}}</th>
+              <th>{{ df.bp.mean() }}</th>
+              <th>{{ df.squat.mean() }}</th>
+              <th>{{df.clean.mean()}}</th>
+            </tr>
+      </thead>  
+      <tbody>    
        {% for r in result %}
         <tr>
           
@@ -41,6 +53,8 @@
       </tbody>
     </table>
    </div> 
+   
+  
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
